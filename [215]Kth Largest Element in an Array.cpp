@@ -62,7 +62,8 @@ class Solution {
     {
         if(low == high && low == k - 1)
             return a[low];
-        else
+
+        if(low < high)
         {
             int p = random_partition(a, low, high);
             if(p == k - 1)

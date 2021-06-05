@@ -35,28 +35,30 @@ class Solution {
 public:
     bool checkInclusion(string s1, string s2)
     {
-        vector<int> count(26, 0);
-        for(int i = 0; i < s1.size(); i++)
-            count[s1[i] - 'a']++;
+        vector<int> hash(26, 0);
+        for(int i = 0; s1[i]; i++)
+            hash[s1[i] - 'a']++;
 
         int len = s1.size();
-
-        for(int start = 0, end = 0; s2[end] && len; end++)
+        int begin = 0;
+        for(int end = 0; s2[end] && len; end++)
         {
-            if(count[s2[end] - 'a'])
+            if(hash[s2[end] - 'a'])
             {
-                count[s2[end] - 'a']--;
+                hash[s2[end] - 'a']--;
                 len--;
             }
             else
             {
-                while(s2[start] != s2[end])
+                while(begin < end)
                 {
-                    count[s2[start] - 'a']++;
+                    if(s2[begin] == s2[end])
+                        break;
+                    hash[s2[begin] - 'a']++;
                     len++;
-                    start++;
+                    begin++;
                 }
-                start++;
+                begin++;
             }
         }
 

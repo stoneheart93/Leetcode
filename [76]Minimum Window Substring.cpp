@@ -99,8 +99,12 @@ public:
 
 
         string result = "";
-        for(int i = minBegin; i <= minEnd; i++)
-            result += s[i];
+
+        if(minWindow != INT_MAX)
+        {
+            for(int i = minBegin; i <= minEnd; i++)
+                result += s[i];
+        }
         return result;
     }
 };
